@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "360508228529",
+    "project_id": "dreamhome-predictor",
+    "storage_bucket": "dreamhome-predictor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360508228529:android:c8c2c5b85bc0f084353390",
+        "android_client_info": {
+          "package_name": "com.example.realeastatepriceprediction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360508228529-3iphg2rvilt8v7q6iri7dancond3q437.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.realeastatepriceprediction",
+            "certificate_hash": "e0ab78e39ba324c46b4a8fe84f7f788f3f244028"
+          }
+        },
+        {
+          "client_id": "360508228529-f6btubeo222al411hq32reob3ocbh5j9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfSTLMfKMDoR0f44I1diT-RKr3sWMcgB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360508228529-f6btubeo222al411hq32reob3ocbh5j9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

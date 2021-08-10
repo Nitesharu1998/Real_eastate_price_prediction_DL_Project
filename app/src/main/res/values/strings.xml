@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Dream Homes</string>
+    <string name="login_email_hint">Email</string>
+    <string name="Predictor">Predictor</string>
+    <string name="login_password_hint">Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pred_text">The price for your home will be </string>
+    <string name="price_unit">Lakhs </string>
+
+
+    <string name="hint_principal">Principal Amount ₹</string>
+    <string name="hint_interest">Interest rate per Year %</string>
+    <string name="hint_years">How Many Years</string>
+    <string name="hint_emi">EMI ₹</string>
+    <string name="hint_interest_total">Total Interest for Loan ₹</string>
+
+    <string name="title_activity_my">MyActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_contact">ContactActivity</string>
+
+    <string name="mapbox_access_token">sk.eyJ1Ijoibml0ZXNoMTExIiwiYSI6ImNrcHk0Y3F4aDB6azEyb3AydnRhbjU1N2kifQ.1W6RtAbG09sKyE_a6cFrsw</string>
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyD7FzlFfJbEeEa3Y1NdAOj2v_ZNG9qfBQI</string>
+
+    <string-array name="spinnerItems">
+        <item>New Panvel</item>
+        <item>Kalamboli</item>
+        <item>Kamothe</item>
+        <item>Kharghar</item>
+    </string-array>
+
+
+</resources>

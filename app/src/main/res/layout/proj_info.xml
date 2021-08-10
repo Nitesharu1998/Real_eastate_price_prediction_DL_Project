@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activitybg"
+    android:orientation="vertical"
+    tools:context=".ProjInfoActivity"
+    android:padding="15dp">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/nametitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp"
+            android:gravity="center"
+            android:text="Mayur appartment"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:id="@+id/proj_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/building1" />
+
+        <TextView
+            android:id="@+id/projlocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location:New Panvel"
+             android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/projaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address: \nipcl colony, sector 16"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Features"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textfeatures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+
+        <TextView
+            android:id="@+id/textbooking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Booking availabilty: \tYes"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+
+                android:background="@drawable/button_background_blue"
+                android:onClick="book"
+                android:text="Requst To Book Flat"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/locatebutton"
+                style="@style/loginButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+
+                android:background="@drawable/button_background_blue"
+
+                android:onClick="locateproj"
+
+                android:text="Locate Building" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+
+</LinearLayout>
