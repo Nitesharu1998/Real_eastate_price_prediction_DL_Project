@@ -8,9 +8,6 @@
             android:title="Contact Us"
             />
 
-        <item  android:id="@+id/recents"
-            android:title="Recents"/>
-
         <item  android:id="@+id/logout"
             android:title="Logout"
             />

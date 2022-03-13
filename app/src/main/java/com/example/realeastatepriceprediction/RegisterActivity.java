@@ -60,20 +60,23 @@ public class RegisterActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progress);
         clayout = findViewById(R.id.clayout);
+        regbutton=findViewById(R.id.reglogin);
+
+        regbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateUser();
+            }
+        });
+
     }
 
-    public void onLoginText(View view) {
-        startActivity(new Intent(this, MainActivity.class));
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        finish();
-    }
+    private void CreateUser() {
+        if (validate()) {
+            mail=email.getText().toString();
+            pass=password.getText().toString();
 
-
-    public void to_login(View view) {
-        if (checkname() | checkpass() | checkcontact() | checkemail()) {
             progressBar.setVisibility(View.VISIBLE);
-
-
             fAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -102,6 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
                         userID = fAuth.getCurrentUser().getUid();
                         DocumentReference documentReference = fStore.collection("users").document(userID);
                         Map<String, Object> user = new HashMap<>();
+                        uname=username.getText().toString();
+                        mail=email.getText().toString();
+                        phone=contact.getText().toString();
                         user.put("fName", uname);
                         user.put("email", mail);
                         user.put("phone", phone);
@@ -125,60 +131,33 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(getApplicationContext(), "something isnt right", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "something went wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+    }
 
-
+    public void onLoginText(View view) {
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        finish();
     }
 
 
-    public boolean checkname() {
-        uname = username.getText().toString().trim();
-        if (!uname.isEmpty()) {
-            username.setError(null);
-            Log.i("uname", uname);
-            return true;
-        } else
-            username.setError("username cant be empty!");
-        return false;
+    private boolean validate() {
+        if (!Validator.emailValidation(RegisterActivity.this, email)) {
+            return false;
+        }
+        if (!Validator.inchargeName(RegisterActivity.this, username)) {
+            return false;
+        }
+        if (!Validator.passwordValidation(RegisterActivity.this, password))
+            return false;
+        if (!Validator.mobileNoValidation(RegisterActivity.this, contact)) {
+            return false;
+        }
+        return true;
     }
-
-    public boolean checkpass() {
-        pass = password.getText().toString().trim();
-        if (!pass.isEmpty() & pass.length() > 8) {
-            password.setError(null);
-            Log.i("pass", pass);
-            return true;
-        } else
-            password.setError("password should be 8 letter");
-        return false;
-    }
-
-    public boolean checkcontact() {
-        phone = contact.getText().toString().trim();
-        if (phone.length() == 10) {
-            Log.i("phone", phone);
-            contact.setError(null);
-            return true;
-        } else
-            contact.setError("please enter valid number");
-        return false;
-    }
-
-    public boolean checkemail() {
-        mail = email.getText().toString().trim();
-        if (Patterns.EMAIL_ADDRESS.matcher(mail).matches() && !mail.isEmpty()) {
-
-            Log.i("mail", mail);
-            email.setError(null);
-            return true;
-        } else
-            email.setError("email is not valid");
-        return false;
-    }
-
 
 }

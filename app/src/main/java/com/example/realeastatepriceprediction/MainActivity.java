@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginbutton(View view) {
-
         email = findViewById(R.id.loginEmail);
         pass = findViewById(R.id.loginpass);
         mail = email.getText().toString().trim();
@@ -109,29 +108,14 @@ public class MainActivity extends AppCompatActivity {
                                         ed.apply();
                                         ed.commit();
 
-                                        Toast.makeText(MainActivity.this, "login done", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "login successful", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(MainActivity.this, homepage.class));
                                         pbar.setVisibility(View.INVISIBLE);
                                         finish();
-
                                     }
-
                                 } catch (Exception e) {
                                     Log.i("e", e.toString());
                                 }
-
-
-//                        SharedPreferences sharedPreferences =getSharedPreferences(PREFERENCE, MODE_PRIVATE);
-//                        SharedPreferences.Editor ed = sharedPreferences.edit();
-//                        ed.putString("email",mail);
-//                        ed.putString("password",password);
-//                        ed.putString("firestore_uid",userId);
-////                        String test= sharedPreferences.getString("email",null);
-////                         Log.i("data", test);
-//                        ed.apply();
-//                        ed.commit();
-
-
                             }
                         }
                     })

@@ -3,6 +3,8 @@ package com.example.realeastatepriceprediction;
 import android.app.Activity;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,7 +83,7 @@ public class Validator {
     }
 
 
-    public static boolean mobileNoValidation(Activity activity, EditText editText) {
+    public static boolean mobileNoValidation(Activity activity, TextInputEditText editText) {
         if (Global.isNull(editText.getText().toString())) {
             Global.showCustomToast(activity, Constants.ENTER_MOBILE, 0);
             editText.requestFocus();
@@ -101,7 +103,7 @@ public class Validator {
         return true;
     }
 
-    public static boolean inchargeName(Activity activity, EditText editText) {
+    public static boolean inchargeName(Activity activity, TextInputEditText editText) {
         if (Global.isNull(editText.getText().toString())) {
             Global.showCustomToast(activity, Constants.ENTER_INCHARGE_NAME, 0);
             editText.requestFocus();
@@ -183,7 +185,7 @@ public class Validator {
         return true;
     }
 
-    public static boolean emailValidation(Activity activity, EditText editText) {
+    public static boolean emailValidation(Activity activity, TextInputEditText editText) {
         if (Global.isNull(editText.getText().toString())) {
             Global.showCustomToast(activity, Constants.ENTER_EMAIL, 0);
             editText.requestFocus();
@@ -287,6 +289,15 @@ public class Validator {
                 return false;
             }
 
+        }
+
+        return true;
+    }
+
+    public static boolean passwordValidation(RegisterActivity registerActivity, TextInputEditText editText) {
+        if (editText.getText().toString().length()<8){
+            Global.showCustomToast(registerActivity,"Minimum 8 characters are required",0);
+            return false;
         }
 
         return true;

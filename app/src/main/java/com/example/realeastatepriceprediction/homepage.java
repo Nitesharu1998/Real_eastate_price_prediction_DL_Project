@@ -111,8 +111,6 @@ public class homepage extends TabActivity {
         });
 
 
-
-
     }
 
     @Override
@@ -136,14 +134,10 @@ public class homepage extends TabActivity {
                 ed.clear();
                 ed.commit();
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(homepage.this,MainActivity.class);
+                Intent intent = new Intent(homepage.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
-
-                break;
-
-            case R.id.recents:
 
                 break;
 
@@ -153,10 +147,10 @@ public class homepage extends TabActivity {
 
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(homepage.this);
                 bottomSheetDialog.setContentView(R.layout.supportpopup);
-                overridePendingTransition(android.R.style.Widget_DeviceDefault_Light_PopupWindow,android.R.id.accessibilityActionScrollDown);
+                overridePendingTransition(android.R.style.Widget_DeviceDefault_Light_PopupWindow, android.R.id.accessibilityActionScrollDown);
                 bottomSheetDialog.setCanceledOnTouchOutside(true);
-                TextInputEditText query=bottomSheetDialog.findViewById(R.id.supportquery);
-                TextInputLayout queryinput=bottomSheetDialog.findViewById(R.id.supportinputlayout);
+                TextInputEditText query = bottomSheetDialog.findViewById(R.id.supportquery);
+                TextInputLayout queryinput = bottomSheetDialog.findViewById(R.id.supportinputlayout);
                 queryinput.setHint("Enter Your Query");
 
 
@@ -166,10 +160,10 @@ public class homepage extends TabActivity {
                     @Override
                     public void onClick(View v) {
 
-                        stringquery= query.getText().toString().trim();
-                        if (stringquery == null){
+                        stringquery = query.getText().toString().trim();
+                        if (stringquery == null) {
                             query.setError("Please enter your query");
-                        }else query.setError(null);
+                        } else query.setError(null);
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.putExtra(Intent.ACTION_SENDTO, Uri.parse("mailto:contact.dreamhomes@gmail.com"));
                         intent.putExtra(Intent.EXTRA_TEXT, stringquery);
@@ -183,13 +177,13 @@ public class homepage extends TabActivity {
                 bottomSheetDialog.show();
 
 
-        break;
-        default:
-        throw new IllegalStateException("Unexpected value: " + item.getItemId());
-    }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + item.getItemId());
+        }
 
         return super.onOptionsItemSelected(item);
-}
+    }
 
 
 //    public void sendquery(View view) {
