@@ -23,6 +23,9 @@
 
     <string name="mapbox_access_token">sk.eyJ1Ijoibml0ZXNoMTExIiwiYSI6ImNrcHk0Y3F4aDB6azEyb3AydnRhbjU1N2kifQ.1W6RtAbG09sKyE_a6cFrsw</string>
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">AIzaSyD7FzlFfJbEeEa3Y1NdAOj2v_ZNG9qfBQI</string>
+    <string name="gps_network_not_enabled">Location is off</string>
+    <string name="open_location_settings">openLocationSettings</string>
+    <string name="Cancel">Cacnel</string>
 
     <string-array name="spinnerItems">
         <item>New Panvel</item>

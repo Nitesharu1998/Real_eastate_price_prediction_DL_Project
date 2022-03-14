@@ -1,7 +1,9 @@
 package com.example.realeastatepriceprediction;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     String resetmail;
     CoordinatorLayout coordinatorlogin;
     GoogleSignInClient mGoogleSignInClient;
+    CircularProgressButton loginbtn;
 
 
     @Override
@@ -68,21 +73,49 @@ public class MainActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         pbar = findViewById(R.id.pbarlogin);
         coordinatorlogin = findViewById(R.id.coordinatorlogin);
-    }
-
-    public void loginbutton(View view) {
+        loginbtn = findViewById(R.id.cirLoginButton);
         email = findViewById(R.id.loginEmail);
         pass = findViewById(R.id.loginpass);
-        mail = email.getText().toString().trim();
-        password = pass.getText().toString().trim();
-        GoogleSignInOptions gso = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        if (Patterns.EMAIL_ADDRESS.matcher(mail).matches() && password.length() > 8) {
+        requestPermission();
+
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginbutton();
+            }
+        });
+    }
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            } else {
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+    }
+
+    public void loginbutton() {
+
+        if (validate()) {
+            mail = email.getText().toString().trim();
+            password = pass.getText().toString().trim();
             email.setError(null);
             pass.setError(null);
+
+            GoogleSignInOptions gso = new GoogleSignInOptions
+                    .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail()
+                    .build();
 
             pbar.setVisibility(View.VISIBLE);
             // authenticating now
@@ -92,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 try {
+                                    requestPermission();
                                     FirebaseUser currentUser = fAuth.getCurrentUser();
                                     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                     //Toast.makeText(getApplicationContext(), "" + currentFirebaseUser.getUid().toString(), Toast.LENGTH_SHORT).show();
@@ -102,9 +136,7 @@ public class MainActivity extends AppCompatActivity {
                                         SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE, MODE_PRIVATE);
                                         SharedPreferences.Editor ed = sharedPreferences.edit();
                                         ed.putString("email", mail);
-
                                         ed.putString("firestore_uid", userId);
-
                                         ed.apply();
                                         ed.commit();
 
@@ -116,6 +148,8 @@ public class MainActivity extends AppCompatActivity {
                                 } catch (Exception e) {
                                     Log.i("e", e.toString());
                                 }
+                            } else {
+                                Global.showCustomToast(MainActivity.this, "Login not successful", 0);
                             }
                         }
                     })
@@ -130,13 +164,17 @@ public class MainActivity extends AppCompatActivity {
                     });
 
 
-        } else if (mail.isEmpty()) {
-            email.setError("please enter credentials");
-            email.requestFocus();
-        } else if (password.isEmpty()) {
-            pass.setError("please enter credentials");
-            pass.requestFocus();
         }
+    }
+
+    private boolean validate() {
+        if (!Validator.emailValidation(MainActivity.this, email)) {
+            return false;
+        }
+        if (!Validator.passwordValidation(MainActivity.this, pass)) {
+            return false;
+        }
+        return true;
     }
 
     public void toRegister(View View) {

@@ -27,10 +27,8 @@ public class maptrial extends AppCompatActivity {
 
         if (gps.canGetLocation) {
             gps.getLocation();
-            //text.setText("Lat"+gps.getLatitude()+"Lon"+gps.getLongitude());
             sourcelat = String.valueOf(gps.getLatitude());
             sourcelongi = String.valueOf(gps.getLongitude());
-            //Log.i("newlat",newlat);   Log.i("newlong",newlongi);
         } else {
            requestPermission();
         }

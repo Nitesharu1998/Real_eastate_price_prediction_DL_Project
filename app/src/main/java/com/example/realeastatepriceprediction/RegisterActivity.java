@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                         uname=username.getText().toString();
                         mail=email.getText().toString();
                         phone=contact.getText().toString();
+                        pass=password.getText().toString();
                         user.put("fName", uname);
                         user.put("email", mail);
                         user.put("phone", phone);

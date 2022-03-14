@@ -294,9 +294,9 @@ public class Validator {
         return true;
     }
 
-    public static boolean passwordValidation(RegisterActivity registerActivity, TextInputEditText editText) {
+    public static boolean passwordValidation(Activity activity, TextInputEditText editText) {
         if (editText.getText().toString().length()<8){
-            Global.showCustomToast(registerActivity,"Minimum 8 characters are required",0);
+            Global.showCustomToast(activity,"Minimum 8 characters are required",0);
             return false;
         }
 
