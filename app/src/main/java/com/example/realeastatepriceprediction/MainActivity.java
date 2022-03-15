@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     public void loginbutton() {
 
         if (validate()) {
+            requestPermission();
             mail = email.getText().toString().trim();
             password = pass.getText().toString().trim();
             email.setError(null);
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 try {
-                                    requestPermission();
+
                                     FirebaseUser currentUser = fAuth.getCurrentUser();
                                     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                                     //Toast.makeText(getApplicationContext(), "" + currentFirebaseUser.getUid().toString(), Toast.LENGTH_SHORT).show();
