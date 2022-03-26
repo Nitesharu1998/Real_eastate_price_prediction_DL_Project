@@ -84,11 +84,20 @@
                 app:spinning_bar_color="#FFF"
                 android:text="Calculate"
                 android:textAllCaps="false"
-
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:layout_marginTop="10dp"
                 app:spinning_bar_padding="6dp"
                 app:initialCornerAngle="27dp"/>
+
+            <TextView
+                android:id="@+id/tv_quotation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/dp_10"
+                android:gravity="end"
+                android:text="Get quotation"
+                android:textColor="#0000EE"/>
 
 
 

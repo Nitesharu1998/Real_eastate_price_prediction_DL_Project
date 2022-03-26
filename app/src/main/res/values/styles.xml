@@ -36,7 +36,7 @@
 
     <style name="viewParent.headerText">
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">@dimen/headerTextSize</item>
+
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -50,7 +50,7 @@
     </style>
 
     <style name="modifiedEditText" parent="parent">
-        <item name="android:textSize">@dimen/newsMoreTextSize</item>
+
 <!--        <item name="android:backgroundTint">@color/primaryTextColor</item>-->
     </style>
 
@@ -65,7 +65,6 @@
     </style>
 
     <style name="spinnerHintText" parent="parent">
-        <item name="android:textSize">@dimen/newsMoreTextSize</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
